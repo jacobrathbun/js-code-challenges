@@ -15,4 +15,27 @@ const products = [
     { id: 5, name: "Orange", category: "Fruits" },
     { id: 6, name: "Broccoli", category: "Vegetables" },
   ];
-  
+
+
+  const productList = document.getElementById("productList");
+const inputElement = document.getElementById("searchInput");
+
+inputElement.addEventListener('input', () => {
+    clearChildren();
+    const input = inputElement.value;
+    filterByName(input).forEach(product => {
+
+    })
+});
+
+function filterByName(input) {
+    return products.filter(product => product.name.toLowerCase().startsWith(input.toLowerCase()));
+}
+
+function clearChildren() {
+    if (productList.children.length !== 0) {
+        for (let i = 0; i < productList.children.length; i++) {
+            productList.removeChild(productList.children[i])
+        }
+    }
+}

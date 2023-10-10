@@ -22,9 +22,31 @@ document.addEventListener("DOMContentLoaded", () => {
     renderBookList(books)
 })
 
-function filterBooks(genre) {
+const booksBtn = document.getElementById('filter-button')
+booksBtn.addEventListener('click', () => {
+    const genreInput = document.getElementById('genre-input').value
+    const booksArr = filterBooks(genreInput)
+    renderBookList(booksArr)
+})
 
+function filterBooks(genre) {
+    const filteredBooks = books.filter(book => {
+        return book.genre.toLowerCase().includes(genre.toLowerCase()) 
+    })
+    return filteredBooks
 }
+
+function renderBookList(books) {
+    const bookList = document.getElementById('book-list')
+    bookList.innerHTML = ''
+
+    books.forEach(book => {
+        const li = document.createElement('li')
+        li.innerText = `${book.title} by ${book.author} (${book.genre})`
+        bookList.appendChild(li);
+    });
+}
+
 
 function renderBookList(books) {
     const bookList = document.getElementById('book-list')
