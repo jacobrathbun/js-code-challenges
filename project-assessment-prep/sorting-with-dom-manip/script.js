@@ -11,4 +11,24 @@ const peopleArr = [
     { id: 5, name: 'Adette', age: 9 },
     { id: 6, name: 'Gio', age: 15 }
   ];
-  
+
+const sortButton = document.getElementById("sortButton");  
+
+document.addEventListener('DOMContentLoaded', renderPeople());
+
+sortButton.addEventListener('click', ()=> {
+  peopleArr.sort((perA, perB) => perA.age - perB.age);
+  renderPeople();
+})
+
+function renderPeople () {  
+    const ul = document.getElementById('list')
+
+    peopleArr.forEach((person) => {
+    const {name, age} = person;
+    const list = document.createElement('li')    
+    list.textContent = `${name} is ${age} years old.`
+    ul.append(list)   
+  });
+}
+
